@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import './LoginPage.css';
+import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -8,12 +8,12 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // ✅ 이메일 형식 검사 함수
+  // 이메일 형식 검사 함수
   const isValidEmail = (email) => {
     return /^\S+@\S+\.\S+$/.test(email);
   };
 
-  // ✅ 비밀번호 규칙 검사 함수
+  // 비밀번호 규칙 검사 함수
   const isValidPassword = (password) => {
     return /^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(password);
   };
