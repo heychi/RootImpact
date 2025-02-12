@@ -1,0 +1,76 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 1120px;
+  /*7행 추가_width: 1120px;*/
+  height: 80px;
+  background-color: #00b8ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  /*14행 추가_padding-left: 120px;
+  padding-right: 199px;*/
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+}
+
+.logo {
+  color: #fff;
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background-color: #00b8ff !important; /*행추가가*/
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 원영 수정버튼 간격 조정 */
+}
+
+.menu-item {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Pretendard;
+  color: black;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.menu-item:hover {
+  color: white;
+}
+
+.search-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.extra-menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.signup-detail-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signup-detail-button:hover {
+  background-color: #0056b3;
+}

@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.main-content {
+  padding-top: 80px; /* Navbar 높이만큼 여백 추가 */
+}
+
+html,
+body {
+  overflow-y: scroll;
+}

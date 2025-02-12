@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 
+import './App.css';
 function App() {
   console.log('hi');
   return (
