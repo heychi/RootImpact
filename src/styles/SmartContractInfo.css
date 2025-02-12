@@ -1,0 +1,116 @@
+/* src/styles/SmartContractInfo.css */
+.smart-contract-container {
+    width: 1000px;
+    margin: 120px auto 40px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* 상단 제목 */
+.header h1 {
+    text-align: left;
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+/* 구분선 */
+.divider {
+    border: none;
+    border-top: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+/* 회사 정보 영역: 로고와 포워더 정보 2단 구성 */
+.company-info {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    flex: 0 0 384px;
+    height: 384px;
+    overflow: hidden;
+}
+
+.logo-container img {
+    width: 384px;
+    height: 384px;
+    object-fit: cover;
+}
+
+.forwarder-info {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.forwarder-info h2 {
+    text-align: left;
+    margin-top: 0;
+    color: #000;
+    padding: 0px;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.forwarder-info p {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+/* 계약 정보 영역 */
+.contract-info {
+    margin-bottom: 30px;
+}
+
+.contract-info h2 {
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.contract-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contract-table th,
+.contract-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.contract-table th {
+    background-color: #D9D9D9;
+    color: #000;
+    width: 40%;
+}
+
+
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    width: 270px;
+    height: 60px;
+    background-color: #28323C;
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+    background-color: #fff;
+    color: #28323C;
+}
