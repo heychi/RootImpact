@@ -1,0 +1,110 @@
+/* src/styles/SmartContractPayment.css */
+.smart-contract-payment-container {
+    max-width: 800px;
+    margin: 120px auto 40px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.page-title {
+    text-align: left;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* 결제 정보 표 */
+.payment-info-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.table-cell {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.label {
+    width: 150px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.value {
+    text-align: left;
+}
+
+/* 결제 방법 선택 영역 */
+.payment-options {
+    margin-bottom: 20px;
+}
+
+.option-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 결제 방법 라디오 버튼 영역: 한 줄에 하나씩 배치 */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    display: block;
+    /* 각 옵션을 블록 요소로 만듦 */
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+/* 하단 버튼 영역 */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.prev-button {
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.prev-button:hover {
+    background-color: #f0f0f0;
+}
+
+.next-button {
+    width: 384px;
+    height: 90px;
+    background-color: #00B8FF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+}
+
+.next-button:hover {
+    background-color: #009adf;
+}
