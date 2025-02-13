@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/ForwarderSignup.css'; // ✅ 스타일 경로 확인
+import '../styles/ForwarderSignup.css';
 
 const ForwarderSignup = () => {
   const navigate = useNavigate();
 
-  // ✅ 포워더가 맞는지 확인 (localStorage 활용)
   useEffect(() => {
     const userType = localStorage.getItem('selectedUserType');
     if (userType !== 'forwarder') {
       alert('잘못된 접근입니다.');
-      navigate('/signup-selection'); // 🚨 포워더가 아닐 경우 선택 페이지로 리디렉션
+      navigate('/signup-selection');
     }
   }, [navigate]);
 
@@ -21,17 +20,17 @@ const ForwarderSignup = () => {
     businessNumber: '',
     phone: '',
     address: '',
+    companyImages: null,
   });
 
   const [errors, setErrors] = useState({});
 
-  // ✅ 입력 필드 유효성 검사 함수
   const validateForm = () => {
     const newErrors = {};
 
     if (!formData.email) {
       newErrors.email = '이메일을 입력해주세요.';
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = '올바른 이메일 형식이 아닙니다.';
     }
 
@@ -64,25 +63,31 @@ const ForwarderSignup = () => {
       newErrors.address = '회사 주소를 입력해주세요.';
     }
 
+    if (!formData.companyImages) {
+      newErrors.companyImages = '회사 이미지를 업로드해주세요.';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ 입력 값 핸들링 함수
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: '' });
   };
 
-  // ✅ 회원가입 버튼 클릭 시 실행
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, companyImages: e.target.files });
+    setErrors({ ...errors, companyImages: '' });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Navigating to ForwarderSignupStep2 with data:', formData); // ✅ 디버깅 로그 추가
-      navigate('/forwarder-signup-step2', { state: { formData } }); // ✅ 올바른 경로 확인
+      navigate('/signup-complete', { state: { userType: '포워더' } });
     } else {
-      alert('메시지를 확인해주세요.');
+      alert('입력 내용을 확인해주세요.');
     }
   };
 
@@ -152,6 +157,17 @@ const ForwarderSignup = () => {
           onChange={handleChange}
         />
         {errors.address && <p className="error">{errors.address}</p>}
+
+        <label>회사 소개 이미지 파일</label>
+        <input
+          type="file"
+          name="companyImages"
+          multiple
+          onChange={handleFileChange}
+        />
+        {errors.companyImages && (
+          <p className="error">{errors.companyImages}</p>
+        )}
 
         <button type="submit" className="signup-button">
           다음 단계
