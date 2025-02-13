@@ -1,10 +1,11 @@
 .chat-page {
   display: flex;
-  height: 100vh;
+  height: 600px;
   background-color: #f1f5f9;
   padding: 10px;
   margin-left: 5%;
   margin-right: 5%;
+  width: 90%;
 }
 
 .chat-container {
