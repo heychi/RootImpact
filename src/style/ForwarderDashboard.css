@@ -1,0 +1,190 @@
+.fd-dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+/* 계약 정보 요약 */
+.fd-contract-summary {
+  width: 1180px;
+  height: 100px;
+  margin: 0 auto 40px auto;
+  border-radius: 16px;
+  border: 4px solid #00b8ff;
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 5px;
+}
+
+.fd-summary-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* ✅ 숫자를 텍스트 아래로 */
+  align-items: center;
+}
+
+.fd-summary-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.fd-summary-value {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.fd-in-progress {
+  color: #00b8ff;
+}
+
+.fd-completed {
+  color: black;
+}
+
+/* 주요 기능 섹션 */
+.fd-tasks-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* 개별 task-box 감싸는 컨테이너 */
+.fd-task-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ 버튼을 박스 위로 배치 */
+.fd-task-header {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* ✅ 버튼 스타일 (밑줄 제거) */
+.fd-task-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: center;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.fd-task-title:hover {
+  color: #00b8ff;
+}
+
+/* ✅ 개별 task-box */
+.fd-task-box {
+  width: 370px;
+  height: 280px;
+  border-radius: 16px;
+  border: 4px solid #00b8ff;
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 15px;
+}
+
+.fd-task-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fd-task-box li {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+/* ✅ 화살표 아이콘 스타일 */
+.fd-arrow-icon {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-left: 5px;
+  color: #333;
+}
+
+/* ✅ 클릭한 화물번호 파란색으로 변경 */
+.fd-highlight {
+  color: #00b8ff;
+  font-weight: bold;
+}
+
+/* ✅ 계약 리스트 팝업 */
+.fd-contract-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background: white;
+  border-radius: 16px;
+  border: 4px solid #00b8ff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fd-contract-popup-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.fd-popup-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: red;
+}
+
+.fd-contract-popup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.fd-contract-popup li {
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.fd-contract-popup li:last-child {
+  border-bottom: none;
+}
+
+/* ✅ 팝업 오버레이 (배경 클릭 시 닫기) */
+.fd-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

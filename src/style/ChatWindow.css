@@ -1,0 +1,144 @@
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 채팅창 상단 */
+.chat-header {
+  padding: 15px;
+  background-color: #ffffff;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.chat-header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* 📌 채팅 메시지 영역 */
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* 📌 채팅 메시지 기본 스타일 */
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  max-width: 60%;
+  position: relative;
+}
+
+.received {
+  align-self: flex-start;
+}
+
+.sent {
+  align-self: flex-end;
+}
+
+/* 📌 프로필 이미지 */
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* 📌 포워더 메시지 (이름 & 회사) */
+.message-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.message-sender {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 📌 메시지 박스 */
+.message-box {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.received .message-box {
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.sent .message-box {
+  background-color: #3b82f6;
+  color: white;
+  text-align: left;
+}
+
+/* 📌 메시지 시간 표시 (메시지 박스 밖) */
+.timestamp {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.received .timestamp {
+  align-self: flex-end;
+}
+
+.sent .timestamp {
+  align-self: flex-start;
+}
+
+/* 📌 입력창 */
+.chat-footer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.chat-footer button {
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 📌 파일 업로드 */
+.file-upload {
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}

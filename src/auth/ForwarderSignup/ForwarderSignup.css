@@ -1,0 +1,71 @@
+/* ForwarderSignup.css */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  box-shadow: none;
+  width: 35%;
+}
+
+.signup-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ✅ 회원가입 제목 아래 밑줄 추가 */
+hr.divider {
+  width: 100%; /* 가로 전체 */
+  height: 1px;
+  background-color: #000 !important; /* ✅ 선 색상 검은색 */
+  border: none;
+  margin-bottom: 20px; /* ✅ 밑줄과 폼 사이 간격 */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px; /* 폼 너비 조정 */
+  gap: 2px;
+}
+
+.signup-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.signup-form input {
+  padding: 10px;
+  margin-bottom: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.signup-form input::placeholder {
+  color: #aaa;
+}
+
+.signup-button {
+  background-color: #00b8ff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.signup-button:hover {
+  background-color: #00b8ff;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,46 @@
+.signup-complete-container {
+  width: 30%;
+  margin: 0 auto;
+  text-align: left; /* 왼쪽 정렬 */
+  margin-top: 150px;
+}
+
+.signup-complete-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.home-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #00b8ff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.home-button:hover {
+  background-color: #00b8ff;
+}

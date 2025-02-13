@@ -1,0 +1,160 @@
+.dashboard-container {
+  position: relative;
+}
+
+.map-container {
+  position: relative;
+  width: 1240px;
+  height: 980px;
+}
+
+/* 프로세스 바 (상단 중앙 오버레이) */
+.process-bar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 792px;
+  height: 120px;
+  background: #f2f2f2;
+  border: 2px solid #d9d9d9;
+  border-radius: 24px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+/* 각 프로세스 단계: 고정 높이로 일관되게 */
+.process-step {
+  flex: 1;
+  height: 40px;
+  /* 고정 높이 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #969696;
+}
+
+.process-step .active {
+  color: #00b8ff;
+  font-weight: bold;
+}
+
+.process-separator {
+  width: 2px;
+  height: 40px;
+  background-color: #d9d9d9;
+  margin: 0 5px;
+}
+
+/* 정보창 라벨 (상단 중앙 좌측) */
+.info-window-label {
+  position: absolute;
+  bottom: calc(416px + 20px);
+  /* info-window 높이 + 약간의 간격 */
+  left: calc(50% - 396px);
+  font-size: 20px;
+  color: #000;
+  background: transparent;
+  padding: 5px 10px;
+}
+
+.info-window {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 792px;
+  height: 416px;
+  background: #f2f2f2;
+  border: 2px solid #d9d9d9;
+  border-radius: 24px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 상단 행: [POL] 현재 경위도 [POD] (가로 632px, 중앙 정렬) */
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 632px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #000;
+}
+
+/* info-header: 화물번호 영역, info-top 아래에 위치 */
+.info-header {
+  width: 632px;
+  margin: 10px auto;
+  font-size: 18px;
+  color: #000;
+  text-align: left;
+}
+
+/* 진행바 영역 (info-window 내부) */
+.progress-bar-info {
+  width: 632px;
+  height: 12px;
+  background: #fff;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 0px auto;
+  border-radius: 6px;
+}
+
+/* 진행된 부분: 진행 상태에 따라 width를 조정, 배경색 #00B8FF */
+.progress-filled {
+  height: 100%;
+  background: #00b8ff;
+  border-radius: 6px 0 0 6px;
+  border: 2px solid #00b8ff;
+}
+
+/* info-bottom: 출발지와 목적지 */
+.info-bottom {
+  width: 632px;
+  margin: 5px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #000;
+}
+
+/* info-content: 나머지 상세 정보 (출발지, 목적지 등 중복 내용은 제거 가능) */
+.info-content {
+  width: 632px;
+  margin: 10px auto;
+  font-size: 18px;
+  color: #000;
+}
+
+.etd-eta {
+  height: 64px;
+  background: #fff;
+  border-radius: 0 0 24px 24px;
+  border-right: 2px solid #d9d9d9;
+  border-bottom: 2px solid #d9d9d9;
+  border-left: 2px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
+  color: #000;
+}
+
+.info-window-label {
+  position: absolute;
+  bottom: 416px;
+  left: calc(50% - 396px);
+  font-size: 30px;
+  color: #000;
+  background: transparent;
+  padding: 5px 10px;
+}

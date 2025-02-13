@@ -1,0 +1,232 @@
+/* ✅ 전체 페이지 컨테이너 */
+.dashboard-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ 지도 전체 컨테이너 */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  height: 980px;
+  margin: 0 auto;
+}
+
+/* ✅ 지도 상의 항로 (파란색 점선) */
+.ship-route {
+  stroke: #00b8ff;
+  stroke-dasharray: 10, 5;
+  stroke-width: 3;
+  fill: none;
+}
+
+/* ✅ 선박 아이콘 (화물의 실시간 위치 표시) */
+.ship-icon {
+  font-size: 32px;
+  transform: translate(-50%, -50%);
+  animation: shipMove 3s linear infinite;
+}
+
+/* ✅ 선박 위치 애니메이션 */
+@keyframes shipMove {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ✅ 화물 위치 마커 */
+.cargo-marker {
+  font-size: 32px;
+  color: #007aff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* ✅ 출발지, 도착지 마커 스타일 */
+.port-marker {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  background: #fff;
+  border: 2px solid #00b8ff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+/* ✅ 프로세스 바 (상단 중앙 오버레이) */
+.process-bar {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #d9d9d9;
+  border-radius: 24px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* ✅ 프로세스 단계 */
+.process-step {
+  flex: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #969696;
+}
+
+/* ✅ 현재 진행중인 단계 스타일 */
+.process-step.active {
+  color: #00b8ff;
+  font-weight: bold;
+}
+
+/* ✅ 단계 구분 선 */
+.process-separator {
+  width: 2px;
+  height: 40px;
+  background-color: #d9d9d9;
+  margin: 0 10px;
+}
+
+/* ✅ 정보창 라벨 */
+.info-window-label {
+  position: absolute;
+  bottom: 450px;
+  left: calc(50% - 396px);
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  background: transparent;
+  padding: 5px 10px;
+}
+
+/* ✅ 정보창 컨테이너 */
+.info-window {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 792px;
+  height: 416px;
+  background: #f2f2f2;
+  border: 2px solid #d9d9d9;
+  border-radius: 24px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ✅ 출발지와 도착지 정보 */
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 632px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ✅ 화물 상세 정보 */
+.info-header {
+  width: 632px;
+  margin: 10px auto;
+  font-size: 18px;
+  color: #000;
+  text-align: left;
+}
+
+/* ✅ 진행바 스타일 */
+.progress-bar-info {
+  width: 632px;
+  height: 12px;
+  background: #fff;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 0px auto;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ 진행된 부분 (출발지~현재위치) */
+.progress-filled {
+  height: 100%;
+  background: #00b8ff;
+  border-radius: 6px 0 0 6px;
+  border: 2px solid #00b8ff;
+  transition: width 1s ease-in-out;
+}
+
+/* ✅ 출발지와 목적지 라벨 */
+.info-bottom {
+  width: 632px;
+  margin: 5px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #000;
+}
+
+/* ✅ 추가 정보 (출발지, 목적지, 화물 정보 등) */
+.info-content {
+  width: 632px;
+  margin: 10px auto;
+  font-size: 18px;
+  color: #000;
+}
+
+/* ✅ ETA / ETD */
+.etd-eta {
+  height: 64px;
+  background: #fff;
+  border-radius: 0 0 24px 24px;
+  border-right: 2px solid #d9d9d9;
+  border-bottom: 2px solid #d9d9d9;
+  border-left: 2px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ✅ 닫기 버튼 */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(14, 141, 251);
+}
+
+.close-button:hover {
+  color: rgb(7, 7, 255);
+}

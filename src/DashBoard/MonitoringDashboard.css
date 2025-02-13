@@ -1,0 +1,98 @@
+/* src/styles/MonitoringDashboard.css */
+
+.dashboard-container {
+    position: relative;
+}
+
+.map-container {
+    position: relative;
+    width: 1240px;
+    height: 980px;
+}
+
+.process-bar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 792px;
+    height: 80px;
+    background: #F2F2F2;
+    border: 2px solid #D9D9D9;
+    border-radius: 24px;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin: 20px auto;
+}
+
+.process-step {
+    flex: 1;
+    text-align: center;
+    font-size: 20px;
+    color: #969696;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.process-step .active {
+    color: #00B8FF;
+    font-weight: bold;
+}
+
+.process-separator {
+    width: 2px;
+    height: 40px;
+    background-color: #D9D9D9;
+    margin: 0 5px;
+}
+
+.info-window {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 792px;
+    height: 416px;
+    background: #F2F2F2;
+    border: 2px solid #D9D9D9;
+    border-radius: 24px;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-content {
+    font-size: 18px;
+    color: #000;
+    padding: 30px;
+}
+
+.etd-eta {
+    height: 64px;
+    background: #FFF;
+    border-radius: 0 0 24px 24px;
+    border-right: 2px solid #D9D9D9;
+    border-bottom: 2px solid #D9D9D9;
+    border-left: 2px solid #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 18px;
+    color: #000;
+}
+
+.info-window-label {
+    position: absolute;
+    bottom: 416px;
+    left: calc(50% - 396px);
+    font-size: 30px;
+    color: #000;
+    background: transparent;
+    padding: 5px 10px;
+}
