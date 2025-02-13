@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import companyImage from '../assets/company_KMTC.jpg';
 import '../styles/ForwarderContractList.css';
 
-
 const ForwarderContractList = ({ cargoNumber, onClose }) => {
   const navigate = useNavigate();
 
@@ -70,6 +69,14 @@ const ForwarderContractList = ({ cargoNumber, onClose }) => {
               <tr>
                 <td>화물정보</td>
                 <td>200kg / 6000cbm</td>
+              </tr>
+              <tr>
+                <td>추가서비스 및 기타</td>
+                <td>창고보관, 통관대행</td>
+              </tr>
+              <tr>
+                <td>운임 비용</td>
+                <td>385,000원</td>
               </tr>
             </tbody>
           </table>

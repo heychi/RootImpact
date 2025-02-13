@@ -1,4 +1,6 @@
 // src/components/MonitoringDashboard.js
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
@@ -11,6 +13,8 @@ import '../styles/MonitoringDashboard.css';
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const MonitoringDashboard = () => {
+  const navigate = useNavigate(); // ✅ 네비게이션 함수 추가
+
   const shipCoordinates = [129.0, 37.5];
 
   const processSteps = [
@@ -31,6 +35,11 @@ const MonitoringDashboard = () => {
     freightCost: '₩1,200,000',
     ETD: '2025-02-04 08:00',
     ETA: '2025-02-20 18:00',
+  };
+
+  // ✅ X 버튼 클릭 시 포워더 대시보드로 이동
+  const handleClose = () => {
+    navigate('/forwarder-dashboard');
   };
 
   return (
@@ -82,12 +91,18 @@ const MonitoringDashboard = () => {
           <div className="info-window-label">실시간 화물 모니터링</div>
 
           <div className="info-window">
+            {/* ✅ X 버튼 추가 */}
+            <button className="close-button" onClick={handleClose}>
+              ✕
+            </button>
+
             {/* 화물번호 영역: 진행바 위에 위치 */}
             <div className="info-header">
               <p>
                 <strong>화물번호</strong> {cargoInfo.cargoNumber}
               </p>
             </div>
+
             {/* 상단 정보 (POL, 현재 경위도, POD) */}
             <div className="info-top">
               <span className="pol">[POL]</span>
