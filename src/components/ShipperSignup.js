@@ -14,7 +14,6 @@ const ShipperSignup = () => {
     phone: '',
     address: '',
   });
-
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -28,9 +27,7 @@ const ShipperSignup = () => {
 
     if (!formData.password) {
       newErrors.password = '비밀번호를 입력해주세요.';
-    } else if (
-      !/^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(formData.password)
-    ) {
+    } else if (!/^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(formData.password)) {
       newErrors.password =
         '대소문자 포함, 숫자/특수문자 중 2가지 포함 8자리 이상 입력해주세요.';
     }
@@ -69,8 +66,10 @@ const ShipperSignup = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        await signupShipper(formData);
-        navigate('/signup-complete', { state: { userType: '화주' } });
+        const response = await signupShipper(formData);
+        // 응답으로 받은 token과 message를 활용할 수 있습니다.
+        // 예시로 회원가입 성공 페이지로 이동합니다.
+        navigate('/account/enroll/complete', { state: { userType: '화주', token: response.token } });
       } catch (error) {
         alert("회원가입 실패: " + error.message);
       }
