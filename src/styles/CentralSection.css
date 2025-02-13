@@ -32,11 +32,6 @@
     font-weight: 700;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    background: transparent;
-}
-
-.logo {
-    background-color: none;
 }
 
 /* 슬로건 텍스트박스 (배경 없음, 640x76 크기) */
@@ -103,6 +98,16 @@
 .tab:not(.selected) {
     background-color: #28323C;
     color: #fff;
+}
+
+/* 해상, 항공, 특송 체크박스 */
+.checkbox-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 15px;
+    font-size: 20px;
 }
 
 /* 공통 폼 행 스타일 */
@@ -174,16 +179,33 @@
     font-size: 18px;
 }
 
-/* 컨테이너 관련 추가 입력란 영역 - 한 줄로 배치 */
+/* 컨테이너 관련 입력란 영역 */
 .container-details {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-    /* 각 입력창 간 간격 */
+    flex-direction: column;
+    gap: 10px;
+    /* 각 행 간 간격 */
     margin-bottom: 15px;
 }
 
-/* 컨테이너 개수 입력창: 232x34 */
+/* 각 컨테이너 행 */
+.container-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* 컨테이너 크기 선택 드롭다운: 232x34, 지정된 스타일 */
+.container-size-dropdown {
+    width: 232px;
+    height: 34px;
+    border-radius: 3px;
+    border: 1px solid #D9D9D9;
+    background: #F7F7F7;
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+/* 컨테이너 개수 입력창: 232x34, 동일 스타일 */
 .container-count-input {
     width: 232px;
     height: 34px;
@@ -194,9 +216,9 @@
     padding: 4px 8px;
 }
 
-/* 컨테이너 무게 입력창: 484x34 */
+/* 컨테이너 무게 입력창: 484x34, 지정된 스타일 */
 .container-weight-input {
-    width: 232px;
+    width: 484px;
     height: 34px;
     border-radius: 3px;
     border: 1px solid #D9D9D9;
