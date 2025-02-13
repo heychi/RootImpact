@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-import '../style/ForwarderDashboard.css';
+import '../styles/ForwarderDashboard.css';
 
 const ForwarderDashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const ForwarderDashboard = () => {
     }
 
     if (selectedDocument === '물류서비스계약서') {
-      navigate(`/forwarder-dashboard/contract-management`);
+      navigate(`/dashboard/forwarder/document`);
     } else if (
       selectedDocument === '선하증권 (Bill of Lading, B/L)' ||
       selectedDocument === '수출 신고서 (Export Declaration)'
@@ -62,7 +62,7 @@ const ForwarderDashboard = () => {
       alert('먼저 확인할 화물 번호를 선택해주세요.');
       return;
     }
-    navigate(`/forwarder-dashboard/ForwarderMonitoring`, {
+    navigate(`/dashboard/forwarder/monitoring`, {
       state: { selectedCargo },
     });
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '../style/SignupComplete.css'; // 스타일 적용
+import '../styles/SignupComplete.css';
 
 const SignupComplete = () => {
   const location = useLocation();
