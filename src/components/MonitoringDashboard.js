@@ -1,6 +1,4 @@
 // src/components/MonitoringDash
-import React from 'react';
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'; // 추가된 부분
@@ -150,7 +148,6 @@ const MonitoringDashboard = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
