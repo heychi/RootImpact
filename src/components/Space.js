@@ -1,25 +1,27 @@
+// src/components/Space.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../styles/Space.css';
 import companyImage from '../assets/company_KMTC.jpg';
+import { registerContainer } from '../api/api_post'; // API 모듈 import
 
 const Space = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ 기존 컨테이너 정보 (수정 모드인지 확인)
+  // 기존 컨테이너 정보 (수정 모드 여부)
   const existingData = location.state?.container || null;
   const [isEditing, setIsEditing] = useState(!!existingData);
 
-  // ✅ 초기 컨테이너 정보
+  // 초기 컨테이너 정보 상태
   const [containerData, setContainerData] = useState(
     existingData || {
       containerNumber: '',
       freightCost: '',
       estimatedDate: '',
       originDestination: '',
-      spaceInfo: '', // 공간정보 추가
+      spaceInfo: '',
       contractDetails: {
         importExport: '',
         insurance: '',
@@ -28,7 +30,7 @@ const Space = () => {
     }
   );
 
-  // ✅ 입력값 변경 핸들러
+  // 입력값 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContainerData((prev) => ({
@@ -48,46 +50,36 @@ const Space = () => {
     }));
   };
 
-  // ✅ 등록/수정 버튼 클릭 시 처리
-  const handleRegister = () => {
+  // 등록/수정 버튼 클릭 시 처리 (API 통신 추가)
+  const handleRegister = async () => {
+    // 간단한 유효성 검사
     if (
       !containerData.containerNumber ||
       !containerData.freightCost ||
       !containerData.estimatedDate ||
       !containerData.originDestination ||
-      !containerData.spaceInfo // 공간정보도 필수 입력값으로 설정
+      !containerData.spaceInfo
     ) {
       alert('모든 필드를 입력하세요!');
       return;
     }
 
-    let containers = JSON.parse(localStorage.getItem('containers')) || [];
-
-    if (isEditing) {
-      // 수정 모드: 기존 컨테이너 정보 업데이트
-      containers = containers.map((cont) =>
-        cont.containerNumber === containerData.containerNumber
-          ? containerData
-          : cont
-      );
-    } else {
-      // 신규 등록
-      containers.push(containerData);
+    try {
+      const response = await registerContainer(containerData);
+      console.log("등록 성공:", response);
+      // API 호출 성공 시, 필요하다면 로컬스토리지 업데이트 등 추가 작업 후 대시보드로 이동
+      navigate('/forwarder-dashboard');
+    } catch (error) {
+      console.error("API 호출 실패:", error);
+      alert("등록에 실패했습니다: " + error.message);
     }
-
-    // localStorage에 저장 후 대시보드로 이동
-    localStorage.setItem('containers', JSON.stringify(containers));
-    navigate('/forwarder-dashboard');
   };
 
-  // ✅ 취소 버튼 클릭 시 처리
+  // 취소 버튼 클릭 처리
   const handleCancel = () => {
-    // 입력된 데이터가 있는지 확인
     const hasData =
       Object.values(containerData).some((value) => value !== '') ||
-      Object.values(containerData.contractDetails).some(
-        (value) => value !== ''
-      );
+      Object.values(containerData.contractDetails).some((value) => value !== '');
 
     if (hasData) {
       const confirmCancel = window.confirm('등록을 취소하시겠습니까?');
