@@ -1,7 +1,10 @@
-// src/components/MonitoringDashboard.js
+// src/components/MonitoringDash
+import React from 'react';
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'; // 추가된 부분
+
 import Navbar from './Navbar';
 import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달 (추후 구현)
 import '../styles/ForwarderDashboard.css';
@@ -9,7 +12,9 @@ import '../styles/ForwarderDashboard.css';
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const MonitoringDashboard = () => {
+
   const navigate = useNavigate();
+
   const shipCoordinates = [129.0, 37.5];
 
   const processSteps = [
@@ -32,22 +37,11 @@ const MonitoringDashboard = () => {
     ETA: '2025-02-20 18:00',
   };
 
-  // Dummy state 및 함수 추가: cargoList, selectedCargo, handleOpenContractList, handleCargoClick
-  const [cargoList, setCargoList] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-  ]);
-  const [selectedCargo, setSelectedCargo] = useState(null);
 
-  const handleOpenContractList = () => {
-    // 실제 모달을 열도록 구현해야 함. 현재는 콘솔 출력으로 대체.
-    console.log("실시간 계약 모달 열기");
-  };
+  // ✅ X 버튼 클릭 시 포워더 대시보드로 이동
+  const handleClose = () => {
+    navigate('/forwarder-dashboard');
 
-  const handleCargoClick = (cargoId) => {
-    const selected = cargoList.find((cargo) => cargo.id === cargoId);
-    setSelectedCargo(selected);
   };
 
   return (
@@ -96,28 +90,31 @@ const MonitoringDashboard = () => {
             ))}
           </div>
 
-          <div className="additional-tasks-container">
-            <div className="task-wrapper">
-              <button
-                className="task-title"
-                onClick={handleOpenContractList}
-                disabled={!selectedCargo}
-              >
-                실시간 계약
-              </button>
-              <div className="task-box">
-                <ul>
-                  {cargoList.map((cargo) => (
-                    <li
-                      key={cargo.id}
-                      className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''}`}
-                      onClick={() => handleCargoClick(cargo.id)}
-                    >
-                      • {cargo.id}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+          <div className="info-window-label">실시간 화물 모니터링</div>
+
+          <div className="info-window">
+            {/* ✅ X 버튼 추가 */}
+            <button className="close-button" onClick={handleClose}>
+              ✕
+            </button>
+
+            {/* 화물번호 영역: 진행바 위에 위치 */}
+            <div className="info-header">
+              <p>
+                <strong>화물번호</strong> {cargoInfo.cargoNumber}
+              </p>
+            </div>
+
+            {/* 상단 정보 (POL, 현재 경위도, POD) */}
+            <div className="info-top">
+              <span className="pol">[POL]</span>
+              <span className="current-coords">
+                {cargoInfo.currentCoordinates}
+              </span>
+              <span className="pod">[POD]</span>
+            </div>
+
 
               {/* 진행바 */}
               <div className="progress-bar-info">

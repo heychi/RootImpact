@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HiChevronRight, HiTrash } from 'react-icons/hi'; // ✅ 화살표 & 삭제 아이콘 추가
 import Navbar from './Navbar';
-import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달
-import '../styles/ForwarderDashboard.css';
-
+import ForwarderContractList from './ForwarderContractList';
+import '../style/ForwarderDashboard.css';
+s;
 const ForwarderDashboard = () => {
   const navigate = useNavigate();
   const [selectedCargo, setSelectedCargo] = useState(null);
@@ -13,7 +14,7 @@ const ForwarderDashboard = () => {
   const contractData = {
     request: 5,
     inProgress: 3,
-    completed: 43,
+    completed: 0,
   };
 
   const cargoList = [
@@ -32,7 +33,6 @@ const ForwarderDashboard = () => {
   ];
 
   useEffect(() => {
-    // `localStorage`에서 컨테이너 목록 불러오기
     const storedContainers =
       JSON.parse(localStorage.getItem('containers')) || [];
     setContainers(storedContainers);
@@ -44,25 +44,35 @@ const ForwarderDashboard = () => {
 
   const handleOpenContractList = () => {
     if (!selectedCargo) {
-      alert('먼저 확인할 화물 번호를 선택해주세요.');
+      alert('화물을 선택해주세요.');
       return;
     }
     setIsContractModalOpen(true);
   };
 
-  // ✅ 계약 내역 및 문서 관리 페이지로 이동
   const handleContractNavigation = () => {
     navigate('/forwarder-dashboard/contract-management');
   };
 
-  // ✅ 컨테이너 남는 공간 등록 페이지로 이동
   const handleSpaceRegistration = () => {
+
     navigate('/dashboard/forwarder/spaceenroll'); // `Space.js`로 이동
+
   };
 
-  // ✅ 컨테이너 클릭 시 수정 페이지로 이동
   const handleEditContainer = (container) => {
-    navigate('/space-registration', { state: { container } }); // 컨테이너 정보 전달
+    navigate('/space-registration', { state: { container } });
+  };
+
+  // ✅ 컨테이너 삭제 기능 추가
+  const handleDeleteContainer = (containerNumber) => {
+    if (window.confirm('이 컨테이너를 삭제하시겠습니까?')) {
+      const updatedContainers = containers.filter(
+        (container) => container.containerNumber !== containerNumber
+      );
+      setContainers(updatedContainers);
+      localStorage.setItem('containers', JSON.stringify(updatedContainers)); // ✅ `localStorage`에서도 삭제
+    }
   };
 
   return (
@@ -89,13 +99,11 @@ const ForwarderDashboard = () => {
         </div>
 
         <div className="additional-tasks-container">
+          {/* ✅ 실시간 계약, 화물 추적 버튼 */}
           <div className="task-wrapper">
-            <button
-              className="task-title"
-              onClick={handleOpenContractList}
-              disabled={!selectedCargo}
-            >
-              실시간 계약, 화물 추적
+            <button className="task-title" onClick={handleOpenContractList}>
+              <span>실시간 계약, 화물 추적</span>
+              <HiChevronRight className="arrow-icon" />
             </button>
             <div className="task-box">
               <ul>
@@ -116,7 +124,8 @@ const ForwarderDashboard = () => {
           {/* ✅ 계약 내역 및 문서 관리 버튼 */}
           <div className="task-wrapper">
             <button className="task-title" onClick={handleContractNavigation}>
-              계약 내역 및 문서 관리
+              <span>계약 내역 및 문서 관리</span>
+              <HiChevronRight className="arrow-icon" />
             </button>
             <div className="task-box">
               <ul>
@@ -134,7 +143,8 @@ const ForwarderDashboard = () => {
           {/* ✅ 컨테이너 남는 공간 등록 */}
           <div className="task-wrapper">
             <button className="task-title" onClick={handleSpaceRegistration}>
-              컨테이너 남는 공간 등록
+              <span>컨테이너 남는 공간 등록</span>
+              <HiChevronRight className="arrow-icon" />
             </button>
             <div className="task-box">
               <ul>
@@ -142,13 +152,20 @@ const ForwarderDashboard = () => {
                   <li className="document-item">등록된 컨테이너가 없습니다.</li>
                 ) : (
                   containers.map((container, index) => (
-                    <li
-                      key={index}
-                      className="document-item container-item"
-                      onClick={() => handleEditContainer(container)}
-                    >
-                      {container.containerNumber} (운임: {container.freightCost}{' '}
-                      원)
+                    <li key={index} className="document-item container-item">
+                      <span onClick={() => handleEditContainer(container)}>
+                        {container.containerNumber} (운임:{' '}
+                        {container.freightCost} 원)
+                      </span>
+                      {/* ✅ 삭제 버튼 추가 */}
+                      <button
+                        className="delete-button"
+                        onClick={() =>
+                          handleDeleteContainer(container.containerNumber)
+                        }
+                      >
+                        <HiTrash className="trash-icon" />
+                      </button>
                     </li>
                   ))
                 )}
