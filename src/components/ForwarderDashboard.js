@@ -57,7 +57,7 @@ const ForwarderDashboard = () => {
 
   // ✅ 컨테이너 남는 공간 등록 페이지로 이동
   const handleSpaceRegistration = () => {
-    navigate('/space-registration'); // `Space.js`로 이동
+    navigate('/dashboard/forwarder/spaceenroll'); // `Space.js`로 이동
   };
 
   // ✅ 컨테이너 클릭 시 수정 페이지로 이동
@@ -102,9 +102,8 @@ const ForwarderDashboard = () => {
                 {cargoList.map((cargo) => (
                   <li
                     key={cargo.id}
-                    className={`cargo-item ${
-                      selectedCargo?.id === cargo.id ? 'highlight' : ''
-                    }`}
+                    className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''
+                      }`}
                     onClick={() => handleCargoClick(cargo.id)}
                   >
                     • {cargo.id}

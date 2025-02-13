@@ -45,7 +45,7 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await signIn({ userType, email, password });
+      const response = await signIn({ email, password, userType });
       // 응답으로 받은 토큰을 localStorage에 저장
       localStorage.setItem('token', response.token);
       // 로그인 성공 후 홈으로 이동
