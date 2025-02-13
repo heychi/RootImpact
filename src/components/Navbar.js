@@ -38,7 +38,10 @@ const Navbar = () => {
       <h1 className="logo">Logismate</h1>
 
       <div className="menu">
-        <button className="menu-item" onClick={() => navigate('/dashboard')}>
+        <button
+          className="menu-item"
+          onClick={() => navigate('/dashboard/owner')}
+        >
           대시보드
         </button>
 
@@ -52,7 +55,10 @@ const Navbar = () => {
             <button className="menu-item" onClick={handleLogin}>
               로그인
             </button>
-            <button className="menu-item" onClick={handleSignup}>
+            <button
+              className="menu-item"
+              onClick={() => navigate('/account/enroll')}
+            >
               회원가입
             </button>
           </>

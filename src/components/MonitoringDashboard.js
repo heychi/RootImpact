@@ -1,4 +1,4 @@
-// src/components/MonitoringDashboard.js
+// src/components/MonitoringDash
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -47,6 +47,9 @@ const MonitoringDashboard = () => {
       <Navbar />
       <div className="dashboard-container">
         <div className="map-container">
+          <button className="close-button" onClick={handleClose}>
+            ✕
+          </button>
           <ComposableMap
             projection="geoEqualEarth"
             width={1440}
@@ -91,10 +94,7 @@ const MonitoringDashboard = () => {
           <div className="info-window-label">실시간 화물 모니터링</div>
 
           <div className="info-window">
-            {/* X 버튼 */}
-            <button className="close-button" onClick={handleClose}>
-              ✕
-            </button>
+            {/* ✅ X 버튼 추가 */}
 
             {/* 화물번호 영역 */}
             <div className="info-header">
@@ -110,6 +110,11 @@ const MonitoringDashboard = () => {
                 {cargoInfo.currentCoordinates}
               </span>
               <span className="pod">[POD]</span>
+            </div>
+
+            {/* 진행바 */}
+            <div className="progress-bar-info">
+              <div className="progress-filled" style={{ width: '50%' }}></div>
             </div>
 
             {/* 진행바 */}
