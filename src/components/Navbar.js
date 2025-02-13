@@ -4,11 +4,31 @@ import '../styles/Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ useLocation 추가
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // ✅ 로그인 상태 유지 (localStorage 사용)
   useEffect(() => {
+    const storedLoginState = localStorage.getItem('isLoggedIn');
+    if (storedLoginState === 'true') {
+      setIsLoggedIn(true);
+    }
     console.log(`현재 경로: ${location.pathname}`);
-  }, [location.pathname]); // ✅ location 대신 location.pathname을 의존성 배열에 추가
+  }, [location.pathname]);
+
+  // ✅ 로그인 시 실행될 함수
+  const handleLogin = () => {
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true);
+    navigate('/dashboard'); // 로그인 후 대시보드로 이동
+  };
+
+  // ✅ 로그아웃 시 실행될 함수
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+    navigate('/'); // 로그아웃 후 메인 페이지로 이동
+  };
 
   return (
     <nav className="navbar">
@@ -18,16 +38,26 @@ const Navbar = () => {
         <button className="menu-item" onClick={() => navigate('/dashboard')}>
           대시보드
         </button>
-        <button className="menu-item">고객지원</button>
-        <button className="menu-item" onClick={() => navigate('/account/login')}>
-          로그인
-        </button>
-        <button
-          className="menu-item"
-          onClick={() => navigate('/account/enroll')}
-        >
-          회원가입
-        </button>
+
+        {/* ✅ 로그인 상태에 따라 버튼 변경 */}
+        {isLoggedIn ? (
+          <button className="menu-item" onClick={handleLogout}>
+            로그아웃
+          </button>
+        ) : (
+          <>
+            <button className="menu-item" onClick={handleLogin}>
+              로그인
+            </button>
+            <button
+              className="menu-item"
+              onClick={() => navigate('/signup-selection')}
+            >
+              회원가입
+            </button>
+          </>
+        )}
+
         <button className="menu-item">한국어</button>
         <button className="menu-item search-icon">🔍</button>
       </div>
