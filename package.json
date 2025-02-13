@@ -5,6 +5,7 @@
   "proxy": "http://43.203.83.174",
   "dependencies": {
     "cra-template": "1.2.0",
+    "jspdf": "^2.5.2",
     "lucide-react": "^0.475.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

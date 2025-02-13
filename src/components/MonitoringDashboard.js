@@ -1,8 +1,12 @@
 // src/components/MonitoringDash
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'; // 추가된 부분
-
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from 'react-simple-maps';
 import Navbar from './Navbar';
 import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달 (추후 구현)
 import '../styles/ForwarderDashboard.css';
@@ -10,9 +14,7 @@ import '../styles/ForwarderDashboard.css';
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const MonitoringDashboard = () => {
-
   const navigate = useNavigate();
-
   const shipCoordinates = [129.0, 37.5];
 
   const processSteps = [
@@ -35,11 +37,9 @@ const MonitoringDashboard = () => {
     ETA: '2025-02-20 18:00',
   };
 
-
-  // ✅ X 버튼 클릭 시 포워더 대시보드로 이동
+  // X 버튼 클릭 시 포워더 대시보드로 이동
   const handleClose = () => {
     navigate('/forwarder-dashboard');
-
   };
 
   return (
@@ -91,14 +91,12 @@ const MonitoringDashboard = () => {
             ))}
           </div>
 
-
           <div className="info-window-label">실시간 화물 모니터링</div>
 
           <div className="info-window">
             {/* ✅ X 버튼 추가 */}
 
-
-            {/* 화물번호 영역: 진행바 위에 위치 */}
+            {/* 화물번호 영역 */}
             <div className="info-header">
               <p>
                 <strong>화물번호</strong> {cargoInfo.cargoNumber}
@@ -114,6 +112,10 @@ const MonitoringDashboard = () => {
               <span className="pod">[POD]</span>
             </div>
 
+            {/* 진행바 */}
+            <div className="progress-bar-info">
+              <div className="progress-filled" style={{ width: '50%' }}></div>
+            </div>
 
             {/* 진행바 */}
             <div className="progress-bar-info">

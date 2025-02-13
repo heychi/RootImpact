@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FiX } from 'react-icons/fi'; //X 아이콘 추가
 import Navbar from './Navbar';
-import '../style/ContractManagement.css';
+import '../styles/ContractManagement.css';
 import { jsPDF } from 'jspdf';
 
 const ContractManagement = () => {
