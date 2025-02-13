@@ -28,6 +28,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <div className="main-content"></div>
       <Routes>
         <Route path="/" element={<IndexPage />} />
         <Route path="/account/login" element={<LoginPage />} />

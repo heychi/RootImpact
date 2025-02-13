@@ -19,7 +19,7 @@ const Navbar = () => {
           대시보드
         </button>
         <button className="menu-item">고객지원</button>
-        <button className="menu-item" onClick={() => navigate('/login')}>
+        <button className="menu-item" onClick={() => navigate('/account/login')}>
           로그인
         </button>
         <button
