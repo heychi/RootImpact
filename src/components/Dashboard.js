@@ -6,6 +6,7 @@ import '../styles/Dashboard.css';
 const Dashboard = () => {
   const [contractList, setContractList] = useState([]);
 
+
   useEffect(() => {
     fetch('/api/contract/shipper')
       .then((res) => res.json())

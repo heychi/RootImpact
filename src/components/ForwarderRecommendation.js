@@ -3,7 +3,34 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../styles/ForwarderRecommendation.css";
-import { searchContainer } from "../api/api_get"; // api_get 모듈에서 검색 함수 import
+
+// 예시 데이터: AI기반 추천포워더
+const aiRecommendedForwarders = [
+    {
+        id: 1,
+        logo: "/assets/corp1.png",
+        expertise: "해상, 항공",
+        companyName: "Forwarder A",
+        estimatedCost: "₩1,000,000 ~ ₩1,500,000",
+        rating: 4.5,
+        reviewCount: 23,
+        departure: "[KRPUS] Busan (2025.02.03)",
+        destination: "[USLGB] Long Beach (2025.02.16)",
+        capacity: "20000 kg / 150 cbm"
+    },
+    {
+        id: 2,
+        logo: "/assets/corp2.png",
+        expertise: "특송",
+        companyName: "Forwarder B",
+        estimatedCost: "₩900,000 ~ ₩1,300,000",
+        rating: 4.2,
+        reviewCount: 15,
+        departure: "[KRPUS] Incheon (2025.03.01)",
+        destination: "[USLGB] Long Beach (2025.03.10)",
+        capacity: "18000 kg / 140 cbm"
+    },
+];
 
 // 예시 데이터: 일반 포워더
 const regularForwarders = [
@@ -33,8 +60,8 @@ const regularForwarders = [
     },
 ];
 
-// 통합 포워더 리스트 (예시 데이터)
-const forwarders = [...regularForwarders];
+// 통합 포워더 리스트 (AI추천과 일반 모두 포함)
+const forwarders = [...aiRecommendedForwarders, ...regularForwarders];
 
 const ForwarderRecommendation = () => {
     const navigate = useNavigate();
@@ -51,7 +78,7 @@ const ForwarderRecommendation = () => {
         arrivalDate: ""
     });
 
-    // 추천 조건 상태: 추가서비스, 보험 종류, 운송비용 범위만 사용
+    // 추천 조건 상태: 이제 추가서비스, 보험 종류, 운송비용 범위만 사용
     const [recommendation, setRecommendation] = useState({
         additionalServices: [],
         insurance: [],
@@ -111,45 +138,6 @@ const ForwarderRecommendation = () => {
     const renderStars = (rating) => {
         const stars = Math.round(rating);
         return "★".repeat(stars);
-    };
-
-    // 검색 버튼 클릭 시 호출되는 함수: GET API 호출 후 결과를 search-results 페이지로 전달
-    const handleSearch = async () => {
-        // 필수 조건: 수출/수입, 출발, 도착, 컨테이너 개수, 컨테이너 무게, 최소 도착 희망일
-        if (
-            basicInfo.departure === "" ||
-            basicInfo.arrival === "" ||
-            containerCount === "" ||
-            containerWeight === "" ||
-            basicInfo.arrivalDate === ""
-        ) {
-            alert("조회에 필요한 필수 운송 정보를 모두 입력해주세요.");
-            return;
-        }
-
-        // 검색 조건 객체 구성
-        const searchInfo = {
-            importExport: selectedTab,
-            departure: basicInfo.departure,
-            destination: basicInfo.arrival,
-            containerCount,
-            containerWeight,
-            expectedArrivalDate: basicInfo.arrivalDate,
-            // 추가 조건도 포함 (배열인 경우, api_get.js에서 join 처리)
-            additionalServices: recommendation.additionalServices,
-            insurance: recommendation.insurance,
-            costRange: recommendation.costRange,
-        };
-
-        try {
-            const results = await searchContainer(searchInfo);
-            // 결과를 상태 또는 localStorage에 저장 후 검색 결과 페이지로 이동
-            // 여기서는 localStorage를 예시로 사용합니다.
-            localStorage.setItem("searchResults", JSON.stringify(results));
-            navigate("/forwarder/search-results");
-        } catch (error) {
-            alert("검색 실패: " + error.message);
-        }
     };
 
     return (
@@ -228,9 +216,7 @@ const ForwarderRecommendation = () => {
                                         <span
                                             key={option}
                                             className={`option-item ${basicInfo.cargoSize === option ? "selected" : ""}`}
-                                            onClick={() =>
-                                                setBasicInfo({ ...basicInfo, cargoSize: option })
-                                            }
+                                            onClick={() => setBasicInfo({ ...basicInfo, cargoSize: option })}
                                         >
                                             {option}
                                         </span>
@@ -318,7 +304,10 @@ const ForwarderRecommendation = () => {
                         <button className="reset-button" onClick={handleReset}>
                             초기화
                         </button>
-                        <button className="search-button" onClick={handleSearch}>
+                        <button
+                            className="search-button"
+                            onClick={() => navigate("/forwarder/search-results")}
+                        >
                             검색
                         </button>
                     </div>
@@ -354,4 +343,4 @@ const ForwarderRecommendation = () => {
     );
 };
 
-export default CentralSection;
+export default ForwarderRecommendation;
