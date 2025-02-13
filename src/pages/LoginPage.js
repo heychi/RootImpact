@@ -1,4 +1,3 @@
-// src/components/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
@@ -51,7 +50,7 @@ const LoginPage = () => {
       // 로그인 성공 후 홈으로 이동
       navigate('/');
     } catch (err) {
-      alert("로그인 실패: " + err.message);
+      alert('로그인 실패: ' + err.message);
     }
 
     console.log(`로그인 요청: ${userType}, ${email}`);
@@ -109,9 +108,10 @@ const LoginPage = () => {
         <br /> 회원가입 후 이용 부탁드립니다.
       </p>
 
+      {/* ✅ 회원가입 버튼 클릭 시 /signup-selection 페이지로 이동 */}
       <button
         className="signup-button"
-        onClick={() => navigate('/account/enroll')}
+        onClick={() => navigate('/signup-selection')}
       >
         회원가입
       </button>

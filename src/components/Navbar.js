@@ -16,11 +16,14 @@ const Navbar = () => {
     console.log(`현재 경로: ${location.pathname}`);
   }, [location.pathname]);
 
-  // ✅ 로그인 시 실행될 함수
+  // ✅ 로그인 페이지로 이동
   const handleLogin = () => {
-    localStorage.setItem('isLoggedIn', 'true');
-    setIsLoggedIn(true);
-    navigate('/dashboard'); // 로그인 후 대시보드로 이동
+    navigate('/login'); // LoginPage로 이동
+  };
+
+  // ✅ 회원가입 페이지로 이동
+  const handleSignup = () => {
+    navigate('/signup-selection'); // SignupSelectionPage로 이동
   };
 
   // ✅ 로그아웃 시 실행될 함수
@@ -35,7 +38,10 @@ const Navbar = () => {
       <h1 className="logo">Logismate</h1>
 
       <div className="menu">
-        <button className="menu-item" onClick={() => navigate('/dashboard/owner')}>
+        <button
+          className="menu-item"
+          onClick={() => navigate('/dashboard/owner')}
+        >
           대시보드
         </button>
 

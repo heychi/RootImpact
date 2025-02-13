@@ -1,25 +1,62 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../styles/SignupComplete.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/SignupSelectionPage.css'; // ✅ 스타일 경로 확인
 
-const SignupComplete = () => {
-  const location = useLocation();
+import { FiPackage, FiSend } from 'react-icons/fi'; // 아이콘 사용
+
+const SignupSelectionPage = () => {
   const navigate = useNavigate();
+  const [selectedType, setSelectedType] = useState('');
 
-  // URL 경로에 따라 "화주" 또는 "포워더" 결정
-  const userType = location.state?.userType || '회원';
+  const handleNext = () => {
+    if (!selectedType) {
+      alert('회원 유형을 선택해주세요.');
+      return;
+    }
+    // ✅ 선택한 유형을 localStorage에 저장 (회원가입 단계에서 활용 가능)
+    localStorage.setItem('selectedUserType', selectedType);
+
+    // ✅ 선택에 따라 회원가입 페이지 이동
+    navigate(
+      selectedType === 'shipper' ? '/signup-shipper' : '/signup-forwarder'
+    );
+  };
 
   return (
-    <div className="signup-complete-container">
-      <h2 className="signup-complete-title">회원가입 ({userType})</h2>
-      <hr className="divider" />
-      <p className="message">회원가입이 완료되었습니다.</p>
-      <p className="message">가입이 승인되면 사용 가능합니다.</p>
-      <button className="home-button" onClick={() => navigate('/')}>
-        홈으로
+    <div className="signup-selection-container">
+      <p className="description">
+        안녕하세요!
+        <br /> 화물운송, 계약, 결제, 실시간 화물 추적까지 물류 올인원 서비스{' '}
+        <strong>Logismate</strong>입니다.
+      </p>
+      <h1 className="title">회원가입</h1>
+
+      <div className="user-type-options">
+        <div
+          className={`user-type-box ${
+            selectedType === 'shipper' ? 'selected' : ''
+          }`}
+          onClick={() => setSelectedType('shipper')}
+        >
+          <FiPackage className="icon" />
+          <p>화주</p>
+        </div>
+        <div
+          className={`user-type-box ${
+            selectedType === 'forwarder' ? 'selected' : ''
+          }`}
+          onClick={() => setSelectedType('forwarder')}
+        >
+          <FiSend className="icon" />
+          <p>포워더</p>
+        </div>
+      </div>
+
+      <button className="next-button" onClick={handleNext}>
+        다음
       </button>
     </div>
   );
 };
 
-export default SignupComplete;
+export default SignupSelectionPage;
