@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import companyImage from '../assets/company_KMTC.jpg';
 import '../styles/ForwarderContractList.css';
+
 
 const ForwarderContractList = ({ cargoNumber, onClose }) => {
   const navigate = useNavigate();
@@ -18,29 +20,33 @@ const ForwarderContractList = ({ cargoNumber, onClose }) => {
         <button className="close-button" onClick={onClose}>
           ✕
         </button>
-        <h2>계약 확인</h2>
-
-        <span className="contract-info">
+        <div className="check">
+          <h2>계약 확인</h2>
+        </div>
+        {/* ✅ 이미지와 텍스트를 나란히 정렬 */}
+        <div className="contract-header">
           <img src={companyImage} alt="Forwarder" className="forwarder-logo" />
-        </span>
+          <div className="contract-info">
+            <h2>화주 정보</h2>
+            <p>
+              <strong>업체명 : </strong> KTMC
+            </p>
+            <p>
+              <strong>운임 비용 : </strong> 385,000원
+            </p>
+            <p>
+              <strong>예상 운송일자 : </strong> 2주(2025.02.03 - 02.16)
+            </p>
+            <p>
+              <strong>최대 무게(kg) : </strong> 200kg
+            </p>
+            <p>
+              <strong>최대 부피(cbm) : </strong> 6000 cbm
+            </p>
+          </div>
+        </div>
 
-        <h3>화주 정보</h3>
-        <p>
-          <strong>업체명:</strong> KTMC
-        </p>
-        <p>
-          <strong>운임 비용:</strong> 385,000원
-        </p>
-        <p>
-          <strong>예상 운송일자:</strong> 2주(2025.02.03 - 02.16)
-        </p>
-        <p>
-          <strong>최대 무게(kg):</strong> 200kg
-        </p>
-        <p>
-          <strong>최대 부피(cbm):</strong> 6000 cbm
-        </p>
-
+        {/* 계약 정보 */}
         <div className="contract-details">
           <h3>계약 정보</h3>
           <table>
