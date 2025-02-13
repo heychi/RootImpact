@@ -18,7 +18,7 @@ const SignupSelectionPage = () => {
 
     // ✅ 올바른 회원가입 페이지로 이동
     navigate(
-      selectedType === 'shipper' ? '/signup-shipper' : '/signup-forwarder'
+      selectedType === 'shipper' ? '/account/enroll/owner' : '/account/enroll/forwarder'
     );
   };
 

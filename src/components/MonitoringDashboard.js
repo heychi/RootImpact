@@ -1,19 +1,19 @@
-// src/components/MonitoringDashboard.js
+// src/components/MonitoringDash
 import React from 'react';
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'; // 추가된 부분
+
 import Navbar from './Navbar';
-import '../styles/MonitoringDashboard.css';
+import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달 (추후 구현)
+import '../styles/ForwarderDashboard.css';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const MonitoringDashboard = () => {
-  const navigate = useNavigate(); // ✅ 네비게이션 함수 추가
+
+  const navigate = useNavigate();
 
   const shipCoordinates = [129.0, 37.5];
 
@@ -37,9 +37,11 @@ const MonitoringDashboard = () => {
     ETA: '2025-02-20 18:00',
   };
 
+
   // ✅ X 버튼 클릭 시 포워더 대시보드로 이동
   const handleClose = () => {
     navigate('/forwarder-dashboard');
+
   };
 
   return (
@@ -88,6 +90,7 @@ const MonitoringDashboard = () => {
             ))}
           </div>
 
+
           <div className="info-window-label">실시간 화물 모니터링</div>
 
           <div className="info-window">
@@ -112,35 +115,37 @@ const MonitoringDashboard = () => {
               <span className="pod">[POD]</span>
             </div>
 
-            {/* 진행바 */}
-            <div className="progress-bar-info">
-              <div className="progress-filled" style={{ width: '50%' }}></div>
-            </div>
 
-            {/* 출발지와 목적지 영역 */}
-            <div className="info-bottom">
-              <span className="departure">{cargoInfo.departure}</span>
-              <span className="destination">{cargoInfo.destination}</span>
-            </div>
+              {/* 진행바 */}
+              <div className="progress-bar-info">
+                <div className="progress-filled" style={{ width: '50%' }}></div>
+              </div>
 
-            {/* 나머지 상세 정보 */}
-            <div className="info-content">
-              <p>
-                <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
-              </p>
-              <p>
-                <strong>운임비 정보</strong> {cargoInfo.freightCost}
-              </p>
-            </div>
+              {/* 출발지와 목적지 영역 */}
+              <div className="info-bottom">
+                <span className="departure">{cargoInfo.departure}</span>
+                <span className="destination">{cargoInfo.destination}</span>
+              </div>
 
-            {/* ETD/ETA 영역 */}
-            <div className="etd-eta">
-              <p>
-                <strong>[ETD]:</strong> {cargoInfo.ETD}
-              </p>
-              <p>
-                <strong>[ETA]:</strong> {cargoInfo.ETA}
-              </p>
+              {/* 나머지 상세 정보 */}
+              <div className="info-content">
+                <p>
+                  <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
+                </p>
+                <p>
+                  <strong>운임비 정보</strong> {cargoInfo.freightCost}
+                </p>
+              </div>
+
+              {/* ETD/ETA 영역 */}
+              <div className="etd-eta">
+                <p>
+                  <strong>[ETD]:</strong> {cargoInfo.ETD}
+                </p>
+                <p>
+                  <strong>[ETA]:</strong> {cargoInfo.ETA}
+                </p>
+              </div>
             </div>
           </div>
         </div>

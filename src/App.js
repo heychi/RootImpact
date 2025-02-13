@@ -24,6 +24,7 @@ import SignupComplete from './pages/SignupComplete';
 import Navbar from './components/Navbar';
 import ChatPage from './pages/ChatPage';
 import ForwarderMonitoring from './components/ForwarderMonitoring';
+import Space from './components/Space';
 function App() {
   return (
     <Router>
@@ -50,6 +51,7 @@ function App() {
         <Route path="/dashboard/forwarder" element={<ForwarderDashboard />} />
         <Route path="/dashboard/forwarder/monitoring" element={<ForwarderMonitoring />} />
         <Route path="/dashboard/forwarder/document" element={<ForwarderContractList />} />
+        <Route path="/dashboard/forwarder/spaceenroll" element={<Space />} />
         <Route path="/forwarder" element={<ForwarderDetailPage />} />
       </Routes>
     </Router>

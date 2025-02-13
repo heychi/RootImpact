@@ -55,7 +55,9 @@ const ForwarderDashboard = () => {
   };
 
   const handleSpaceRegistration = () => {
-    navigate('/space-registration');
+
+    navigate('/dashboard/forwarder/spaceenroll'); // `Space.js`로 이동
+
   };
 
   const handleEditContainer = (container) => {
@@ -108,9 +110,8 @@ const ForwarderDashboard = () => {
                 {cargoList.map((cargo) => (
                   <li
                     key={cargo.id}
-                    className={`cargo-item ${
-                      selectedCargo?.id === cargo.id ? 'highlight' : ''
-                    }`}
+                    className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''
+                      }`}
                     onClick={() => handleCargoClick(cargo.id)}
                   >
                     • {cargo.id}

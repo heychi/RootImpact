@@ -24,7 +24,7 @@ const Navbar = () => {
         </button>
         <button
           className="menu-item"
-          onClick={() => navigate('/signup-selection')}
+          onClick={() => navigate('/account/enroll')}
         >
           회원가입
         </button>

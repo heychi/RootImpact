@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ShipperSignup.css';
+import { signupShipper } from '../api/api_post'; // API 통신 모듈 import
 
 const ShipperSignup = () => {
   const navigate = useNavigate();
@@ -13,7 +14,6 @@ const ShipperSignup = () => {
     phone: '',
     address: '',
   });
-
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -27,9 +27,7 @@ const ShipperSignup = () => {
 
     if (!formData.password) {
       newErrors.password = '비밀번호를 입력해주세요.';
-    } else if (
-      !/^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(formData.password)
-    ) {
+    } else if (!/^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(formData.password)) {
       newErrors.password =
         '대소문자 포함, 숫자/특수문자 중 2가지 포함 8자리 이상 입력해주세요.';
     }
@@ -60,48 +58,23 @@ const ShipperSignup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: '' });
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  // API 통신 및 회원가입 처리 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) {
-      alert('입력한 정보를 다시 확인해주세요.');
-      return;
-    }
-
-    // 요청 바디를 API 사양에 맞게 매핑
-    const requestBody = {
-      email: formData.email,
-      password: formData.password,
-      companyName: formData.companyName,
-      businessRegistrationNumber: formData.businessNumber,
-      companyContact: formData.phone,
-      companyAddress: formData.address,
-    };
-
-    try {
-      const response = await fetch("http://43.203.83.174/auth/shipper/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        // 오류 응답 처리: 응답 본문에서 에러 메시지를 가져옴
-        const errorData = await response.json();
-        alert("회원가입 실패: " + (errorData.message || "오류가 발생했습니다."));
-      } else {
-        // 회원가입 성공: 완료 페이지로 이동
-        navigate('/signup-complete', { state: { userType: '화주' } });
+    if (validateForm()) {
+      try {
+        const response = await signupShipper(formData);
+        // 응답으로 받은 token과 message를 활용할 수 있습니다.
+        // 예시로 회원가입 성공 페이지로 이동합니다.
+        navigate('/account/enroll/complete', { state: { userType: '화주', token: response.token } });
+      } catch (error) {
+        alert("회원가입 실패: " + error.message);
       }
-    } catch (error) {
-      console.error("API 통신 중 오류:", error);
-      alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+    } else {
+      alert('입력한 정보를 다시 확인해주세요.');
     }
   };
 
