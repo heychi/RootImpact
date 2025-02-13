@@ -1,20 +1,16 @@
-# 1) Node 환경에서 React 빌드
-FROM node:18-alpine AS builder
+# 1) Node에서 React 빌드
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-# 2) Nginx로 정적 파일 배포
+# 2) Nginx로 최종 배포
 FROM nginx:alpine
-# 80 포트 노출
+# 커스텀 Nginx 설정 (nginx.conf) 복사
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# 빌드된 결과물을 Nginx html 폴더로 복사
+COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
-
-# 빌드 결과물을 /usr/share/nginx/html 에 복사
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# 커스텀 nginx.conf (백엔드 프록시 등) 덮어쓰기
-COPY ../nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
 CMD ["nginx", "-g", "daemon off;"]
