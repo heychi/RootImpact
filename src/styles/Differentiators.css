@@ -1,0 +1,89 @@
+/* 전체 영역: 너비 1440px, 좌우에 60px 여백 추가 */
+.differentiators-section {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 160px 60px;
+}
+
+/* 공통 행 스타일 */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+/* 1행: 제목 - 가운데 정렬 */
+.title-row {
+    justify-content: left;
+    margin-bottom: 120px;
+}
+
+.title-row h2 {
+    font-size: 50px;
+    color: #333;
+}
+
+/* 2~4행: 좌우 두 열 배치 */
+.row-2,
+.row-3,
+.row-4 {
+    justify-content: space-between;
+}
+
+/* 공통 열 스타일 */
+.col {
+    flex: 1;
+    padding: 10px;
+}
+
+/* 이미지 열 */
+.image-col {
+    display: flex;
+    justify-content: center;
+}
+
+.image-col img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0px;
+}
+
+/* 텍스트 열 */
+.text-col {
+    font-size: 24px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.5;
+}
+
+/* 세부 제목 스타일 */
+.detail-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* 반응형: 화면 폭이 좁아질 경우 세로 배치 */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .row-2,
+    .row-3,
+    .row-4 {
+        justify-content: center;
+    }
+
+    .col {
+        width: 100%;
+    }
+
+    .image-col {
+        margin-bottom: 120px;
+    }
+}
