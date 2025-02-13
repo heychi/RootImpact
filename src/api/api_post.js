@@ -24,15 +24,23 @@ export async function postAPI(endpoint, data) {
 
 export async function signupShipper(formData) {
     const requestBody = {
-        'userRole': "SHIPPER", // 고정값
-        'email': formData.email,
-        'password': formData.password,
-        'companyName': formData.companyName,
-        'companyContact': formData.phone,
-        'companyAddress': formData.address,
+        "userRole": "SHIPPER", // 고정값
+        "email": formData.email,
+        "password": formData.password,
+        "companyName": formData.companyName,
+        "companyContact": formData.phone,
+        "companyAddress": formData.address,
         "companyImagePath": "",
-        'businessRegistrationNumber': formData.businessNumber,
+        "businessRegistrationNumber": formData.businessNumber,
     };
-
     return await postAPI("/api/auth/signup", requestBody);
+}
+
+export async function signIn(formData) {
+    const requestBody = {
+        "email": formData.email,
+        "password": formData.password,
+        "userRole": "SHIPPER", // 고정값
+    };
+    return await postAPI('/api/auth/signin', requestBody);
 }

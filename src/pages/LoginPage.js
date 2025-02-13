@@ -1,6 +1,8 @@
+// src/components/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
+import { signIn } from '../api/api_post'; // API 통신 모듈에서 함수 import
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const LoginPage = () => {
     return /^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*()_+]).{8,}$/.test(password);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!userType) {
       alert('회원 유형을 선택해주세요.');
       return;
@@ -37,9 +39,19 @@ const LoginPage = () => {
     }
     if (!isValidPassword(password)) {
       alert(
-        '비밀번호는 대소문자 포함, 숫자/특수문자 중 2가지 포함 8자리 이상 입력해주세요.'
+        '비밀번호는 대소문자 포함, 숫자/특수문자 중 2가지를 포함 8자리 이상 입력해주세요.'
       );
       return;
+    }
+
+    try {
+      const response = await signIn({ userType, email, password });
+      // 응답으로 받은 토큰을 localStorage에 저장
+      localStorage.setItem('token', response.token);
+      // 로그인 성공 후 홈으로 이동
+      navigate('/');
+    } catch (err) {
+      alert("로그인 실패: " + err.message);
     }
 
     console.log(`로그인 요청: ${userType}, ${email}`);
