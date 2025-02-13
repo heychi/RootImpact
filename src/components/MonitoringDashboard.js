@@ -1,13 +1,15 @@
-
-import React, { useState, useEffect } from 'react';
+// src/components/MonitoringDashboard.js
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'; // 추가된 부분
 import Navbar from './Navbar';
-import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달
+import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달 (추후 구현)
 import '../styles/ForwarderDashboard.css';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const MonitoringDashboard = () => {
+  const navigate = useNavigate();
   const shipCoordinates = [129.0, 37.5];
 
   const processSteps = [
@@ -28,6 +30,24 @@ const MonitoringDashboard = () => {
     freightCost: '₩1,200,000',
     ETD: '2025-02-04 08:00',
     ETA: '2025-02-20 18:00',
+  };
+
+  // Dummy state 및 함수 추가: cargoList, selectedCargo, handleOpenContractList, handleCargoClick
+  const [cargoList, setCargoList] = useState([
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+  ]);
+  const [selectedCargo, setSelectedCargo] = useState(null);
+
+  const handleOpenContractList = () => {
+    // 실제 모달을 열도록 구현해야 함. 현재는 콘솔 출력으로 대체.
+    console.log("실시간 계약 모달 열기");
+  };
+
+  const handleCargoClick = (cargoId) => {
+    const selected = cargoList.find((cargo) => cargo.id === cargoId);
+    setSelectedCargo(selected);
   };
 
   return (
@@ -76,61 +96,59 @@ const MonitoringDashboard = () => {
             ))}
           </div>
 
+          <div className="additional-tasks-container">
+            <div className="task-wrapper">
+              <button
+                className="task-title"
+                onClick={handleOpenContractList}
+                disabled={!selectedCargo}
+              >
+                실시간 계약
+              </button>
+              <div className="task-box">
+                <ul>
+                  {cargoList.map((cargo) => (
+                    <li
+                      key={cargo.id}
+                      className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''}`}
+                      onClick={() => handleCargoClick(cargo.id)}
+                    >
+                      • {cargo.id}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-        <div className="additional-tasks-container">
-          <div className="task-wrapper">
-            <button
-              className="task-title"
-              onClick={handleOpenContractList}
-              disabled={!selectedCargo}
-            >
-              실시간 계약
-            </button>
-            <div className="task-box">
-              <ul>
-                {cargoList.map((cargo) => (
-                  <li
-                    key={cargo.id}
-                    className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''
-                      }`}
-                    onClick={() => handleCargoClick(cargo.id)}
-                  >
-                    • {cargo.id}
-                  </li>
-                ))}
-              </ul>
+              {/* 진행바 */}
+              <div className="progress-bar-info">
+                <div className="progress-filled" style={{ width: '50%' }}></div>
+              </div>
 
-            </div>
+              {/* 출발지와 목적지 영역 */}
+              <div className="info-bottom">
+                <span className="departure">{cargoInfo.departure}</span>
+                <span className="destination">{cargoInfo.destination}</span>
+              </div>
 
-            {/* 진행바 */}
-            <div className="progress-bar-info">
-              <div className="progress-filled" style={{ width: '50%' }}></div>
-            </div>
+              {/* 나머지 상세 정보 */}
+              <div className="info-content">
+                <p>
+                  <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
+                </p>
+                <p>
+                  <strong>운임비 정보</strong> {cargoInfo.freightCost}
+                </p>
+              </div>
 
-            {/* 출발지와 목적지 영역 */}
-            <div className="info-bottom">
-              <span className="departure">{cargoInfo.departure}</span>
-              <span className="destination">{cargoInfo.destination}</span>
-            </div>
-
-            {/* 나머지 상세 정보 */}
-            <div className="info-content">
-              <p>
-                <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
-              </p>
-              <p>
-                <strong>운임비 정보</strong> {cargoInfo.freightCost}
-              </p>
-            </div>
-
-            {/* ETD/ETA 영역 */}
-            <div className="etd-eta">
-              <p>
-                <strong>[ETD]:</strong> {cargoInfo.ETD}
-              </p>
-              <p>
-                <strong>[ETA]:</strong> {cargoInfo.ETA}
-              </p>
+              {/* ETD/ETA 영역 */}
+              <div className="etd-eta">
+                <p>
+                  <strong>[ETD]:</strong> {cargoInfo.ETD}
+                </p>
+                <p>
+                  <strong>[ETA]:</strong> {cargoInfo.ETA}
+                </p>
+              </div>
             </div>
           </div>
         </div>
