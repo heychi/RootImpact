@@ -5,7 +5,7 @@ import {
   Marker,
 } from 'react-simple-maps';
 import Navbar from './Navbar';
-import '../style/ForwarderMonitoring.css';
+import '../styles/ForwarderMonitoring.css';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
