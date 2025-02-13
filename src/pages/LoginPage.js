@@ -47,7 +47,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <p className="description">
+      <p className="Hidescription">
         안녕하세요!
         <br /> 화물운송, 계약, 결제, 실시간 화물 추적까지 물류 올인원 서비스{' '}
         <strong>Logismate</strong>입니다.
