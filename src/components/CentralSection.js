@@ -10,13 +10,14 @@ const CentralSection = () => {
     const [selectedTab, setSelectedTab] = useState("수출");
 
     // 옵션 입력 상태
-    const [transportMethods, setTransportMethods] = useState([]); // 해상, 항공, 특송
+    // transportMethods 등 불필요한 항목은 그대로 유지하거나 제거할 수 있음
+    const [transportMethods, setTransportMethods] = useState([]);
     const [departure, setDeparture] = useState("");
     const [arrival, setArrival] = useState("");
-    // 화물 종류를 라디오 버튼으로 단일 선택
-    const [cargoType, setCargoType] = useState("");
-    // 화물 크기 및 무게 (FCL, LCL 라디오 버튼)
-    const [cargoSize, setCargoSize] = useState("");
+    // 화물 종류 및 화물 크기/무게 라디오 버튼은 제거됨
+    const [cargoType, setCargoType] = useState(""); // 사용하지 않을 경우 무시 가능
+    const [cargoSize, setCargoSize] = useState("");   // 사용하지 않을 경우 무시 가능
+
     const [departureDate, setDepartureDate] = useState("");
     const [arrivalDate, setArrivalDate] = useState("");
 
@@ -54,25 +55,35 @@ const CentralSection = () => {
         }
     };
 
-    // 화물 종류 라디오 버튼 변경 처리
+    // 화물 종류 라디오 버튼 변경 처리 (필요 시 유지)
     const handleCargoTypeChange = (e) => {
         setCargoType(e.target.value);
     };
 
-    // 제출 처리: 모든 필수 입력값 검증
+    // 제출 처리: 필수 조건은 수출/수입, 출발, 도착, 컨테이너 개수, 컨테이너 무게, 최소 도착 희망일
     const handleSubmit = () => {
         if (
-            transportMethods.length === 0 ||
+            selectedTab === "" ||
             departure === "" ||
             arrival === "" ||
-            cargoType === "" ||
-            cargoSize === "" ||
-            departureDate === "" ||
+            containerCount === "" ||
+            containerWeight === "" ||
             arrivalDate === ""
         ) {
-            alert("매칭에 필요한 운송 정보를 모두 입력해주세요.");
+            alert("조회에 필요한 필수 운송 정보를 모두 입력해주세요.");
             return;
         }
+        // 전역으로 사용할 정보 저장 (localStorage)
+        const searchInfo = {
+            importExport: selectedTab,
+            departure,
+            destination: arrival,
+            containerCount,
+            containerWeight,
+            arrivalDate,
+        };
+        localStorage.setItem("cargoSearchInfo", JSON.stringify(searchInfo));
+
         // 모든 필수 값이 입력된 경우 포워더 추천 리스트 페이지로 이동
         navigate("/recommendation");
     };
@@ -85,7 +96,7 @@ const CentralSection = () => {
                     <h1 className="logo">Logismate</h1>
                     <div className="slogan-box">
                         <p className="slogan">
-                            화물운송, 계약, 결제, 실시간 화물 추적까지 물류 올인원(AII-IN-ONE) 서비스
+                            컨테이너의 남는 공간을 필요한 곳과 이어주는 효율적인 물류 솔루션
                         </p>
                     </div>
                 </div>
@@ -110,37 +121,6 @@ const CentralSection = () => {
                         </button>
                     </div>
 
-                    {/* 운송방법 체크박스 */}
-                    <div className="checkbox-group">
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="transport"
-                                value="해상"
-                                onChange={handleTransportChange}
-                            />{" "}
-                            해상
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="transport"
-                                value="항공"
-                                onChange={handleTransportChange}
-                            />{" "}
-                            항공
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="transport"
-                                value="특송"
-                                onChange={handleTransportChange}
-                            />{" "}
-                            특송
-                        </label>
-                    </div>
-
                     {/* 출발지 선택 필드 */}
                     <div className="form-row">
                         <label>
@@ -150,8 +130,6 @@ const CentralSection = () => {
                                     className="select-field"
                                     onClick={() => openPortModal("departure")}
                                 >
-                                    {/* departure 값 표시 */}
-                                    { /* (departure 상태 사용) */}
                                     {departure || "선택하세요"}
                                 </div>
                                 {departure && (
@@ -189,108 +167,22 @@ const CentralSection = () => {
                         </label>
                     </div>
 
-                    {/* 화물 종류 라디오 버튼 */}
-                    <div className="form-row cargo-type">
-                        <span>화물종류:</span>
-                        <label>
-                            <input
-                                type="radio"
-                                name="cargoType"
-                                value="일반"
-                                checked={cargoType === "일반"}
-                                onChange={handleCargoTypeChange}
-                            />{" "}
-                            일반
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="cargoType"
-                                value="냉장"
-                                checked={cargoType === "냉장"}
-                                onChange={handleCargoTypeChange}
-                            />{" "}
-                            냉장
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="cargoType"
-                                value="냉동"
-                                checked={cargoType === "냉동"}
-                                onChange={handleCargoTypeChange}
-                            />{" "}
-                            냉동
-                        </label>
-                    </div>
-
-                    {/* 화물 크기 및 무게 (라디오 버튼) */}
-                    <div className="form-row cargo-size">
-                        <span>화물크기 및 무게:</span>
-                        <label>
-                            <input
-                                type="radio"
-                                name="cargoSize"
-                                value="FCL"
-                                checked={cargoSize === "FCL"}
-                                onChange={(e) => setCargoSize(e.target.value)}
-                            />{" "}
-                            FCL
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="cargoSize"
-                                value="LCL"
-                                checked={cargoSize === "LCL"}
-                                onChange={(e) => setCargoSize(e.target.value)}
-                            />{" "}
-                            LCL
-                        </label>
-                    </div>
-
-                    {/* 컨테이너 관련 추가 입력란 */}
-                    {/* 컨테이너 관련 추가 입력란 */}
+                    {/* 컨테이너 관련 추가 입력란 (한 줄에 배치) */}
                     <div className="form-row container-details">
-                        <div className="container-row">
-                            <select
-                                className="container-size-dropdown"
-                                value={containerSize}
-                                onChange={(e) => setContainerSize(e.target.value)}
-                            >
-                                <option value="">컨테이너 크기 선택</option>
-                                <option value="20ft">20ft</option>
-                                <option value="40ft">40ft</option>
-                            </select>
-                            <input
-                                type="number"
-                                className="container-count-input"
-                                placeholder="컨테이너 개수"
-                                value={containerCount}
-                                onChange={(e) => setContainerCount(e.target.value)}
-                            />
-                        </div>
-                        <div className="container-row">
-                            <input
-                                type="number"
-                                className="container-weight-input"
-                                placeholder="컨테이너 무게 (kg)"
-                                value={containerWeight}
-                                onChange={(e) => setContainerWeight(e.target.value)}
-                            />
-                        </div>
-                    </div>
-
-                    {/* 출발 예정일 */}
-                    <div className="form-row">
-                        <label>
-                            출발 예정일:
-                            <input
-                                type="date"
-                                value={departureDate}
-                                onChange={(e) => setDepartureDate(e.target.value)}
-                            />
-                        </label>
+                        <input
+                            type="number"
+                            className="container-count-input"
+                            placeholder="컨테이너 개수"
+                            value={containerCount}
+                            onChange={(e) => setContainerCount(e.target.value)}
+                        />
+                        <input
+                            type="number"
+                            className="container-weight-input"
+                            placeholder="컨테이너 무게 (kg)"
+                            value={containerWeight}
+                            onChange={(e) => setContainerWeight(e.target.value)}
+                        />
                     </div>
 
                     {/* 최소 도착 희망일 */}
@@ -305,10 +197,10 @@ const CentralSection = () => {
                         </label>
                     </div>
 
-                    {/* 실시간 포워더 매칭 버튼 */}
+                    {/* 실시간 포워더 조회 버튼 */}
                     <div className="form-row">
                         <button className="match-button" onClick={handleSubmit}>
-                            실시간 포워더 매칭
+                            실시간 포워더 조회
                         </button>
                     </div>
                 </div>

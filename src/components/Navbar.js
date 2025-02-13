@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
@@ -35,7 +35,7 @@ const Navbar = () => {
       <h1 className="logo">Logismate</h1>
 
       <div className="menu">
-        <button className="menu-item" onClick={() => navigate('/dashboard')}>
+        <button className="menu-item" onClick={() => navigate('/dashboard/owner')}>
           대시보드
         </button>
 
@@ -51,7 +51,7 @@ const Navbar = () => {
             </button>
             <button
               className="menu-item"
-              onClick={() => navigate('/signup-selection')}
+              onClick={() => navigate('/account/enroll')}
             >
               회원가입
             </button>

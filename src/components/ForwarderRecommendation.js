@@ -333,7 +333,7 @@ const ForwarderRecommendation = () => {
                             <div className="col-capacity">{fw.capacity}</div>
                             <div className="col-cost">{fw.freightCost}</div>
                             <div className="col-detail">
-                                <button onClick={() => navigateDetail(fw.id)}>상세보기</button>
+                                <button onClick={() => navigate('/forwarder')}>상세보기</button>
                             </div>
                         </div>
                     ))}

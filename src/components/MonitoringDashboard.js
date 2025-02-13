@@ -47,6 +47,9 @@ const MonitoringDashboard = () => {
       <Navbar />
       <div className="dashboard-container">
         <div className="map-container">
+          <button className="close-button" onClick={handleClose}>
+            ✕
+          </button>
           <ComposableMap
             projection="geoEqualEarth"
             width={1440}
@@ -93,9 +96,7 @@ const MonitoringDashboard = () => {
 
           <div className="info-window">
             {/* ✅ X 버튼 추가 */}
-            <button className="close-button" onClick={handleClose}>
-              ✕
-            </button>
+
 
             {/* 화물번호 영역: 진행바 위에 위치 */}
             <div className="info-header">
@@ -114,40 +115,40 @@ const MonitoringDashboard = () => {
             </div>
 
 
-              {/* 진행바 */}
-              <div className="progress-bar-info">
-                <div className="progress-filled" style={{ width: '50%' }}></div>
-              </div>
+            {/* 진행바 */}
+            <div className="progress-bar-info">
+              <div className="progress-filled" style={{ width: '50%' }}></div>
+            </div>
 
-              {/* 출발지와 목적지 영역 */}
-              <div className="info-bottom">
-                <span className="departure">{cargoInfo.departure}</span>
-                <span className="destination">{cargoInfo.destination}</span>
-              </div>
+            {/* 출발지와 목적지 영역 */}
+            <div className="info-bottom">
+              <span className="departure">{cargoInfo.departure}</span>
+              <span className="destination">{cargoInfo.destination}</span>
+            </div>
 
-              {/* 나머지 상세 정보 */}
-              <div className="info-content">
-                <p>
-                  <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
-                </p>
-                <p>
-                  <strong>운임비 정보</strong> {cargoInfo.freightCost}
-                </p>
-              </div>
+            {/* 나머지 상세 정보 */}
+            <div className="info-content">
+              <p>
+                <strong>화물 적재물 정보</strong> {cargoInfo.cargoDetails}
+              </p>
+              <p>
+                <strong>운임비 정보</strong> {cargoInfo.freightCost}
+              </p>
+            </div>
 
-              {/* ETD/ETA 영역 */}
-              <div className="etd-eta">
-                <p>
-                  <strong>[ETD]:</strong> {cargoInfo.ETD}
-                </p>
-                <p>
-                  <strong>[ETA]:</strong> {cargoInfo.ETA}
-                </p>
-              </div>
+            {/* ETD/ETA 영역 */}
+            <div className="etd-eta">
+              <p>
+                <strong>[ETD]:</strong> {cargoInfo.ETD}
+              </p>
+              <p>
+                <strong>[ETA]:</strong> {cargoInfo.ETA}
+              </p>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 
