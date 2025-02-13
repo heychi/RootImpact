@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import '../styles/Dashboard.css';
@@ -24,6 +25,7 @@ const Dashboard = () => {
               {contract.contractDate}
             </button>
           ))}
+
         </div>
       </div>
     </div>
