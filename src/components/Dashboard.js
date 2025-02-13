@@ -1,5 +1,6 @@
 // src/components/Dashboard.js
 import React from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate import 추가
 import Navbar from "./Navbar";
 import "../styles/Dashboard.css";
 
@@ -10,6 +11,8 @@ const contractList = [
 ];
 
 const Dashboard = () => {
+    const navigate = useNavigate(); // 여기서 navigate 정의
+
     return (
         <div>
             <Navbar />
@@ -18,8 +21,12 @@ const Dashboard = () => {
                 <h2 className="sub-title">계약 화물 리스트</h2>
                 <div className="contract-list-container">
                     {contractList.map((item, index) => (
-                        <button key={index} className="contract-item">
+                        <button
+                            key={index}
+                            className="contract-item"
                             onClick={() => navigate('/dashboard/owner')}
+                        >
+                            {item}
                         </button>
                     ))}
                 </div>

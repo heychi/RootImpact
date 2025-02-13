@@ -18,12 +18,11 @@ const Navbar = () => {
 
   // ✅ 로그인 페이지로 이동
   const handleLogin = () => {
-    navigate('/login'); // LoginPage로 이동
-  };
 
-  // ✅ 회원가입 페이지로 이동
-  const handleSignup = () => {
-    navigate('/signup-selection'); // SignupSelectionPage로 이동
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true);
+    navigate('/account/login'); // 로그인 후 대시보드로 이동
+
   };
 
   // ✅ 로그아웃 시 실행될 함수
