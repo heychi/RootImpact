@@ -1,0 +1,122 @@
+.sign-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+  margin: auto; /* 가로 정렬 중앙 배치 */
+  background: none;
+  box-shadow: none;
+  width: 30%;
+  text-align: center;
+}
+
+/* 제목 중앙 정렬 */
+.signup-title {
+  align-self: flex-start;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 구분선 */
+.divider {
+  width: 100%;
+  border: none;
+  height: 3px;
+  background-color: #000;
+  margin-bottom: 10px;
+}
+
+/* ✅ 섹션 중앙 정렬 및 세로 여백 추가 */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px; /* 각 조건들 간(세로) 여백 증가 */
+}
+
+h3 {
+  font-size: 16px; /* 제목 글씨 크기 살짝 축소 */
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: center;
+  align-self: flex-start;
+}
+
+/* ✅ 가로 간격을 줄이고 세로 간격을 넓힌 체크박스 그룹 */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 18px; /* 버튼 간격 줄이기 */
+  width: 100%;
+}
+
+/* ✅ 개별 체크박스 스타일 (글씨 작게) */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px; /* 글씨 크기 작게 조정 */
+  cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.signup-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00b8ff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+.signup-button:hover {
+  background-color: #00b8ff;
+}
+
+/* ✅ 동그라미 체크박스 유지 */
+input[type='checkbox'] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #666565;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 6px; /* 체크박스 오른쪽 간격 줄이기 */
+  position: relative;
+}
+
+input[type='checkbox']:checked::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: #00b8ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 드롭다운 스타일 */
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+/* 선택했을 때 효과 */
+.dropdown:focus {
+  border-color: #666565;
+}
