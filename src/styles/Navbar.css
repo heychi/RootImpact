@@ -28,7 +28,7 @@
   line-height: normal;
   background-color: #00b8ff !important;
   /*행추가가*/
-  padding-left: 5%;
+  padding-left: 10%;
 }
 
 .menu {
@@ -36,7 +36,7 @@
   align-items: center;
   gap: 20px;
   /* 원영 수정버튼 간격 조정 */
-  padding-right: 5%;
+  padding-right: 10%;
 }
 
 .menu-item {
