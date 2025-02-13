@@ -20,7 +20,7 @@ const Navbar = () => {
   const handleLogin = () => {
     localStorage.setItem('isLoggedIn', 'true');
     setIsLoggedIn(true);
-    navigate('/dashboard'); // 로그인 후 대시보드로 이동
+    navigate('/account/login'); // 로그인 후 대시보드로 이동
   };
 
   // ✅ 로그아웃 시 실행될 함수
