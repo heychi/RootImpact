@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../style/ChatList.css';
+import '../styles/ChatList.css';
 
 const ChatList = ({ onSelectChat }) => {
   const chatHistory = [

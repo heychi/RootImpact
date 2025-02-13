@@ -1,13 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import companyImage from '../../img/company_KMTC.jpg';
-import '../../styles/ForwarderContractList.css';
+
+import companyImage from '../assets/company_KMTC.jpg';
+import '../styles/ForwarderContractList.css';
+
 
 const ForwarderContractList = ({ cargoNumber, onClose }) => {
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    navigate('/forwarder-dashboard/ForwarderMonitoring', {
+    navigate('/dashboard/forwarder/monitoring', {
       state: { cargoNumber },
     });
   };

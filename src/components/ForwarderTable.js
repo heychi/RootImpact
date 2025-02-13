@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/ForwarderTable.css';
+import '../styles/ForwarderTable.css';
 
 const tableData = [
   { label: '수출/수입', value: '수입' },

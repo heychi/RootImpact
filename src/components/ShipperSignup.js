@@ -1,3 +1,4 @@
+// src/components/ShipperSignup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ShipperSignup.css';
@@ -63,12 +64,44 @@ const ShipperSignup = () => {
     setErrors({ ...errors, [name]: '' });
   };
 
-  const handleSubmit = (e) => {
+  // API 통신 및 회원가입 처리 함수
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      navigate('/signup-complete', { state: { userType: '화주' } });
-    } else {
-      alert('메시지를 확인해주세요.');
+    if (!validateForm()) {
+      alert('입력한 정보를 다시 확인해주세요.');
+      return;
+    }
+
+    // 요청 바디를 API 사양에 맞게 매핑
+    const requestBody = {
+      email: formData.email,
+      password: formData.password,
+      companyName: formData.companyName,
+      businessRegistrationNumber: formData.businessNumber,
+      companyContact: formData.phone,
+      companyAddress: formData.address,
+    };
+
+    try {
+      const response = await fetch("http://43.203.83.174/auth/shipper/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        // 오류 응답 처리: 응답 본문에서 에러 메시지를 가져옴
+        const errorData = await response.json();
+        alert("회원가입 실패: " + (errorData.message || "오류가 발생했습니다."));
+      } else {
+        // 회원가입 성공: 완료 페이지로 이동
+        navigate('/signup-complete', { state: { userType: '화주' } });
+      }
+    } catch (error) {
+      console.error("API 통신 중 오류:", error);
+      alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import ChatList from '../components/ChatList';
 import ChatWindow from '../components/ChatWindow';
-import '../style/ChatPage.css';
+import '../styles/ChatPage.css';
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState(null);

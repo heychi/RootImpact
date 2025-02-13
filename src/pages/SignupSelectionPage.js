@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/SignupSelectionPage.css'; // ✅ 스타일 경로 확인
+import '../styles/SignupSelectionPage.css'; // ✅ 스타일 경로 확인
 
 import { FiPackage, FiSend } from 'react-icons/fi'; // 아이콘 사용
 
@@ -33,18 +33,16 @@ const SignupSelectionPage = () => {
 
       <div className="user-type-options">
         <div
-          className={`user-type-box ${
-            selectedType === 'shipper' ? 'selected' : ''
-          }`}
+          className={`user-type-box ${selectedType === 'shipper' ? 'selected' : ''
+            }`}
           onClick={() => setSelectedType('shipper')}
         >
           <FiPackage className="icon" />
           <p>화주</p>
         </div>
         <div
-          className={`user-type-box ${
-            selectedType === 'forwarder' ? 'selected' : ''
-          }`}
+          className={`user-type-box ${selectedType === 'forwarder' ? 'selected' : ''
+            }`}
           onClick={() => setSelectedType('forwarder')}
         >
           <FiSend className="icon" />
