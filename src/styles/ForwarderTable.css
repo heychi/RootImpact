@@ -1,0 +1,35 @@
+.procedures-image {
+  width: 100%; /* 전체 너비의 90%로 설정 */
+  display: block; /* 중앙 정렬을 위해 block 요소로 설정 */
+  margin: auto; /* 위아래 여백 20px, 좌우 중앙 정렬 */
+}
+
+@media (max-width: 768px) {
+  .procedures-image {
+    width: 100%; /* 모바일에서는 전체 너비로 설정 */
+    margin: 10px auto; /* 여백을 줄여서 더 깔끔하게 */
+  }
+}
+
+.forwarder-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* 열 너비 고정 */
+}
+
+.forwarder-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* 왼쪽 열: 20% */
+.forwarder-table .table-label {
+  width: 20%;
+  background-color: #f9f9f9; /* 구분을 위해 살짝 색 추가 (선택 사항) */
+  font-weight: bold;
+}
+
+/* 오른쪽 열: 80% */
+.forwarder-table .table-value {
+  width: 80%;
+}
