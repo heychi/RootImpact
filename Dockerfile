@@ -3,7 +3,7 @@ FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY front/ .
 RUN npm run build
 
 # 2) Nginx로 최종 배포
