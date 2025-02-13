@@ -1,12 +1,9 @@
-// src/components/MonitoringDashboard.js
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from 'react-simple-maps';
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-import '../styles/MonitoringDashboard.css';
+import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달
+import '../styles/ForwarderDashboard.css';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
@@ -79,22 +76,30 @@ const MonitoringDashboard = () => {
             ))}
           </div>
 
-          <div className="info-window-label">실시간 화물 모니터링</div>
 
-          <div className="info-window">
-            {/* 화물번호 영역: 진행바 위에 위치 */}
-            <div className="info-header">
-              <p>
-                <strong>화물번호</strong> {cargoInfo.cargoNumber}
-              </p>
-            </div>
-            {/* 상단 정보 (POL, 현재 경위도, POD) */}
-            <div className="info-top">
-              <span className="pol">[POL]</span>
-              <span className="current-coords">
-                {cargoInfo.currentCoordinates}
-              </span>
-              <span className="pod">[POD]</span>
+        <div className="additional-tasks-container">
+          <div className="task-wrapper">
+            <button
+              className="task-title"
+              onClick={handleOpenContractList}
+              disabled={!selectedCargo}
+            >
+              실시간 계약
+            </button>
+            <div className="task-box">
+              <ul>
+                {cargoList.map((cargo) => (
+                  <li
+                    key={cargo.id}
+                    className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''
+                      }`}
+                    onClick={() => handleCargoClick(cargo.id)}
+                  >
+                    • {cargo.id}
+                  </li>
+                ))}
+              </ul>
+
             </div>
 
             {/* 진행바 */}

@@ -99,7 +99,7 @@ const LoginPage = () => {
 
       <button
         className="signup-button"
-        onClick={() => navigate('/signup-selection')}
+        onClick={() => navigate('/account/enroll')}
       >
         회원가입
       </button>
