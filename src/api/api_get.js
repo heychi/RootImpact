@@ -41,3 +41,11 @@ export async function getAPI(endpoint, params) {
 export async function searchContainer(searchInfo) {
     return await getAPI("/api/container/search", searchInfo);
 }
+
+/**
+ * 계약 리스트 API 호출 함수
+ * @returns {Promise<object[]>} - 계약 리스트 배열
+ */
+export async function getContractList() {
+    return await getAPI("/api/contract/shipper", {});
+}
