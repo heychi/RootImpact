@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../Navbar';
+import Navbar from './Navbar';
 import ForwarderContractList from './ForwarderContractList'; // 실시간 계약 모달
-import '../../styles/ForwarderDashboard.css';
+import '../styles/ForwarderDashboard.css';
 
 const ForwarderDashboard = () => {
   const navigate = useNavigate();
@@ -102,9 +102,8 @@ const ForwarderDashboard = () => {
                 {cargoList.map((cargo) => (
                   <li
                     key={cargo.id}
-                    className={`cargo-item ${
-                      selectedCargo?.id === cargo.id ? 'highlight' : ''
-                    }`}
+                    className={`cargo-item ${selectedCargo?.id === cargo.id ? 'highlight' : ''
+                      }`}
                     onClick={() => handleCargoClick(cargo.id)}
                   >
                     • {cargo.id}
