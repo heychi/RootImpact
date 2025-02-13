@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, Button } from '../Forwarder/ForwarderCard';
+import { Card, CardContent, Button } from './ForwarderCard';
 import { Star } from 'lucide-react';
 import ReviewList from './ReviewList';
 import Navbar from './Navbar';
 import '../styles/ForwarderDetail.css';
-import companyImage from '../img/company_KMTC.jpg';
-import procedures from '../img/company_KMTC_3.jpg';
+
+import companyImage from '../assets/company_KMTC.jpg';
+import procedures from '../assets/company_KMTC_3.jpg';
+
 import ForwarderTable from './ForwarderTable';
 import '../styles/ForwarderTable.css';
 import ReviewSummary from './ReviewSummary';
