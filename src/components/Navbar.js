@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
@@ -16,11 +16,14 @@ const Navbar = () => {
     console.log(`현재 경로: ${location.pathname}`);
   }, [location.pathname]);
 
-  // ✅ 로그인 시 실행될 함수
+  // ✅ 로그인 페이지로 이동
   const handleLogin = () => {
-    localStorage.setItem('isLoggedIn', 'true');
-    setIsLoggedIn(true);
-    navigate('/dashboard'); // 로그인 후 대시보드로 이동
+    navigate('/login'); // LoginPage로 이동
+  };
+
+  // ✅ 회원가입 페이지로 이동
+  const handleSignup = () => {
+    navigate('/signup-selection'); // SignupSelectionPage로 이동
   };
 
   // ✅ 로그아웃 시 실행될 함수
@@ -49,10 +52,7 @@ const Navbar = () => {
             <button className="menu-item" onClick={handleLogin}>
               로그인
             </button>
-            <button
-              className="menu-item"
-              onClick={() => navigate('/signup-selection')}
-            >
+            <button className="menu-item" onClick={handleSignup}>
               회원가입
             </button>
           </>

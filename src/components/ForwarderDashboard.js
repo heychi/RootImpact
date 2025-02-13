@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HiChevronRight, HiTrash } from 'react-icons/hi';
 import Navbar from './Navbar';
 import ForwarderContractList from './ForwarderContractList';
-import '../style/ForwarderDashboard.css';
+import '../styles/ForwarderDashboard.css';
 
 const ForwarderDashboard = () => {
   const navigate = useNavigate();
