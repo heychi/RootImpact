@@ -8,7 +8,7 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* 📌 채팅창 상단 */
+/* 📌 채팅창 상단 (제목) */
 .chat-header {
   padding: 15px;
   background-color: #ffffff;
@@ -44,7 +44,6 @@
   flex-direction: column;
   margin-bottom: 15px;
   max-width: 60%;
-  position: relative;
 }
 
 .received {
@@ -82,33 +81,37 @@
   border-radius: 10px;
   font-size: 14px;
   word-wrap: break-word;
+  position: relative;
   display: inline-block;
 }
 
 .received .message-box {
   background-color: white;
   border: 1px solid #ddd;
+  max-width: 100%;
 }
 
 .sent .message-box {
   background-color: #3b82f6;
   color: white;
   text-align: left;
+  max-width: 100%;
 }
 
-/* 📌 메시지 시간 표시 (메시지 박스 밖) */
+/* 📌 메시지 시간 표시 */
 .timestamp {
   font-size: 12px;
   color: #64748b;
-  margin-top: 3px;
+  position: absolute;
+  bottom: 5px;
 }
 
 .received .timestamp {
-  align-self: flex-end;
+  right: 5px;
 }
 
 .sent .timestamp {
-  align-self: flex-start;
+  left: 5px;
 }
 
 /* 📌 입력창 */
@@ -141,4 +144,9 @@
   font-size: 18px;
   margin-right: 10px;
   cursor: pointer;
+}
+
+/* 📌 공백을 없애기 위한 조정 */
+.chat-body > * {
+  width: 100%;
 }
