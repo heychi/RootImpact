@@ -78,10 +78,13 @@ const ForwarderDashboard = () => {
                 {cargoList.map((cargo) => (
                   <li
                     key={cargo.contractId}
-                    className={`cargo-item ${selectedCargo?.contractId === cargo.contractId
+
+                    className={`cargo-item ${
+                      selectedCargo?.contractId === cargo.contractId
                         ? 'highlight'
                         : ''
-                      }`}
+                    }`}
+
                     onClick={() => handleCargoClick(cargo.contractId)}
                   >
                     • {cargo.contractId}

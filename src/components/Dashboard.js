@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
   const [contractList, setContractList] = useState([]);
+
 
   useEffect(() => {
     fetch('/api/contract/shipper')
@@ -24,6 +26,7 @@ const Dashboard = () => {
               {contract.contractDate}
             </button>
           ))}
+
         </div>
       </div>
     </div>
