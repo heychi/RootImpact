@@ -14,6 +14,7 @@ import Dashboard from "./components/Dashboard";
 import CargoStatus from "./components/CargoStatus";
 import MonitoringDashboard from "./components/MonitoringDashboard";
 import ContractManagement from "./components/DocumentDashboard";
+import ForwarderDetailPage from './components/ForwarderDetail';
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/dashboard/status" element={<CargoStatus />} />
         <Route path="/dashboard/status/monitoring" element={<MonitoringDashboard />} />
         <Route path="/dashboard/status/document" element={<ContractManagement />} />
+        <Route path="/forwarderdetail" element={<ForwarderDetailPage />} />
       </Routes>
     </Router>
   );

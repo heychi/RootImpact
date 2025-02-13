@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/ReviewSummary.css';
+import '../styles/ReviewSummary.css';
 
 const ReviewSummary = ({
   averageRating = 0,
